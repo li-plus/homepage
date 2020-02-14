@@ -1,3 +1,11 @@
+$board-size: 440px;
+$cell-size: 100px;
+$cell-margin: 5px;
+$full-cell-size: $cell-size + 2 * $cell-margin;
+$cell-font-size: 55px;
+$cell-line-height: 90px;
+$mobile-thresh: 500px;
+
 @font-face {
   font-family: "Clear Sans";
   src: url('./assets/clear-sans.ttf') format('truetype');
@@ -20,119 +28,215 @@ body {
   font-weight: bold;
 }
 
-.board {
-  order: 1;
-  width: 440px;
-  height: 440px;
-  padding: 5px;
-  background-color: #baa;
-  border-radius: 7px;
-  outline: none;
-  position: relative;
+@mixin game-board{
+  .board {
+    order: 1;
+    width: $board-size;
+    height: $board-size;
+    padding: 5px;
+    background-color: #baa;
+    border-radius: 7px;
+    outline: none;
+    position: relative;
+  }
+
+  .board .cell, .tile {
+    user-select: none;
+    cursor: default;
+  }
+
+  .cell, .tile {
+    width: $cell-size;
+    height: $cell-size;
+    margin: $cell-margin;
+    line-height: $cell-line-height;
+    display: inline-block;
+    font-size: $cell-font-size;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 7px;
+    font-family: "Clear Sans";
+    color: #766;
+    background-color: #dcb;
+  }
+
+  .tile0 {
+    background-color: #dcb;
+  }
+
+  .tile2 {
+    background-color: #eee;
+  }
+
+  .tile4 {
+    background-color: #eec;
+  }
+
+  .tile8 {
+    color: #ffe;
+    background-color: #fb8;
+  }
+
+  .tile16 {
+    color: #ffe;
+    background-color: #f96;
+  }
+
+  .tile32 {
+    color: #ffe;
+    background-color: #f75;
+  }
+
+  .tile64 {
+    color: #ffe;
+    background-color: #f53;
+  }
+
+  .tile128 {
+    color: #ffe;
+    background-color: #ec7;
+    font-size: 45px;
+  }
+
+  .tile256 {
+    color: #ffe;
+    background-color: #ec6;
+    font-size: 45px;
+  }
+
+  .tile512 {
+    color: #ffe;
+    background-color: #ec5;
+    font-size: 45px;
+  }
+
+  .tile1024 {
+    color: #fff;
+    background-color: #ec3;
+    font-size: 35px;
+  }
+
+  .tile2048 {
+    color: #fff;
+    background-color: #ec2;
+    font-size: 35px;
+  }
+
+  .tile {
+    position: absolute;
+  }
+
+  .tile.merged {
+    display: none;
+  }
+
+  .tile.merged.isMoving {
+    display: inline;
+  }
+
+  .tile.new, .overlay {
+    animation-duration: 0.20s;
+    animation-name: newTile;
+    animation-fill-mode: forwards;
+    animation-delay: 0.15s;
+    transform: scale(0);
+  }
+
+  @for $row from 0 through 3 {
+    @for $column from 0 through 3 {
+      .position_#{$row}_#{$column}:not(.isMoving) {
+        top: $full-cell-size * $row + $cell-margin;
+        left: $full-cell-size * $column + $cell-margin;
+      }
+    }
+  }
+
+  @for $fromRow from 0 through 3 {
+    @for $toRow from 0 through 3 {
+      $name: row_from_#{$fromRow}_to_#{$toRow};
+
+      @if $fromRow == $toRow {
+        .#{$name} {
+          top: $full-cell-size * $toRow + $cell-margin;
+        }
+      } @else {
+        .#{$name} {
+          animation-duration: 0.20s;
+          animation-name: $name;
+          animation-fill-mode: forwards;
+        }
+
+        @keyframes #{$name} {
+          from {
+            top: $full-cell-size * $fromRow + $cell-margin;
+          }
+          to {
+            top: $full-cell-size * $toRow + $cell-margin;
+          }
+        }
+      }
+    }
+  }
+
+  @for $fromColumn from 0 through 3 {
+    @for $toColumn from 0 through 3 {
+      $name: column_from_#{$fromColumn}_to_#{$toColumn};
+
+      @if $fromColumn == $toColumn {
+        .#{$name} {
+          left: $full-cell-size * $toColumn + $cell-margin;
+        }
+      } @else {
+        .#{$name} {
+          animation-duration: 0.20s;
+          animation-name: $name;
+          animation-fill-mode: forwards;
+        }
+
+        @keyframes #{$name} {
+          from {
+            left: $full-cell-size * $fromColumn + $cell-margin;
+          }
+          to {
+            left: $full-cell-size * $toColumn + $cell-margin;
+          }
+        }
+      }
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    left: 0px;
+    right: 0px;
+    font-size: $cell-font-size;
+    font-weight: bolder;
+    background-color: rgba(221, 221, 221, 0.5);
+    border-radius: 7px;
+  }
+
+  .tryAgain {
+    background-color: #876;
+    color: #fff;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }  
 }
 
-.board .cell, .tile {
-  user-select: none;
-  cursor: default;
-}
-
-.cell, .tile {
-  width: 100px;
-  height: 100px;
-  margin: 5px;
-  line-height: 90px;
-  display: inline-block;
-  font-size: 55px;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 7px;
-  font-family: "Clear Sans";
-  color: #766;
-  background-color: #dcb;
-}
-
-.tile0 {
-  background-color: #dcb;
-}
-
-.tile2 {
-  background-color: #eee;
-}
-
-.tile4 {
-  background-color: #eec;
-}
-
-.tile8 {
-  color: #ffe;
-  background-color: #fb8;
-}
-
-.tile16 {
-  color: #ffe;
-  background-color: #f96;
-}
-
-.tile32 {
-  color: #ffe;
-  background-color: #f75;
-}
-
-.tile64 {
-  color: #ffe;
-  background-color: #f53;
-}
-
-.tile128 {
-  color: #ffe;
-  background-color: #ec7;
-  font-size: 45px;
-}
-
-.tile256 {
-  color: #ffe;
-  background-color: #ec6;
-  font-size: 45px;
-}
-
-.tile512 {
-  color: #ffe;
-  background-color: #ec5;
-  font-size: 45px;
-}
-
-.tile1024 {
-  color: #fff;
-  background-color: #ec3;
-  font-size: 35px;
-}
-
-.tile2048 {
-  color: #fff;
-  background-color: #ec2;
-  font-size: 35px;
-}
-
-.tile {
-  position: absolute;
-}
-
-.tile.merged {
-  display: none;
-}
-
-.tile.merged.isMoving {
-  display: inline;
-}
-
-.tile.new, .overlay {
-  animation-duration: 0.20s;
-  animation-name: newTile;
-  animation-fill-mode: forwards;
-  animation-delay: 0.15s;
-  transform: scale(0);
-}
+@include game-board();
 
 @keyframes newTile {
   from {
@@ -144,35 +248,17 @@ body {
   }
 }
 
-.overlay {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  left: 0px;
-  right: 0px;
-  font-size: 55px;
-  font-weight: bolder;
-  background-color: rgba(221, 221, 221, 0.5);
-  border-radius: 7px;
-}
-
-.tryAgain {
-  background-color: #876;
-  color: #fff;
-  height: 40px;
-  width: 200px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-}
-
 .overlay .message {
   color: #666;
+}
+
+@media screen and (max-width: $mobile-thresh) {
+  $cell-margin: 5px !global;
+  $cell-size: 50px !global;
+  $full-cell-size: $cell-size + 2 * $cell-margin !global;
+  $board-size: 4 * $full-cell-size !global;
+  $cell-font-size: 30px !global;
+  $cell-line-height: 45px !global;
+
+  @include game-board();
 }
