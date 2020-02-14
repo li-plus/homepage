@@ -28,7 +28,7 @@ export default {
         endDate() {
             var date = new Date();
             date.setDate(date.getDate() + this.score);
-            return date;
+            return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
         },
         isTillDeath() {
             return this.score > 365 * 80;
@@ -39,14 +39,14 @@ export default {
             if (this.isTillDeath()) {
                 return 'forever';
             } else {
-                return this.endDate().toLocaleDateString();
+                return this.endDate();
             }
         },
         dateStrZh() {
             if (this.isTillDeath()) {
                 return '永远';
             } else {
-                return this.endDate().toLocaleDateString();
+                return this.endDate();
             }
         }
     }
