@@ -1,0 +1,50 @@
+<template>
+    <div class="overlay" v-show="show">
+        <p class="message">{{contents}}</p>
+        <button @click="restart" class="tryAgain">Try again</button>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {};
+    },
+    props: {
+        board: {
+            type: Object,
+            required: true
+        },
+        onrestart: {
+            type: Function,
+            required: true
+        }
+    },
+    computed: {
+        show() {
+            return this.board.hasWon() || this.board.hasLost();
+        },
+        contents() {
+            if (this.board.hasWon()) {
+                return 'Good Job!';
+            } else if (this.board.hasLost()) {
+                return 'Game Over';
+            } else {
+                return '';
+            }
+        }
+    },
+
+    methods: {
+        restart() {
+            this.onrestart && this.onrestart();
+        }
+    },
+    components: {}
+};
+</script>
+
+<style lang='scss' scoped>
+@import './assets/scss/style.scss';
+@import './assets/scss/main.scss';
+</style>
