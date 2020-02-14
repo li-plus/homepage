@@ -28,6 +28,7 @@ module.exports = {
   ],
   theme: '@vuepress/blog',
   themeConfig: {
+    logo: '/assets/img/logo.jpg',
     nav: [
       {
         text: 'Blogs',
