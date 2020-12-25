@@ -63,6 +63,6 @@ email: ""
 highlight_name: true
 ---
 
-I am Jiahao Li, a senior student majoring in Computer Science from Tsinghua University. I was researching on artificial intelligence and computer vision at [i-VisionGroup](http://ivg.au.tsinghua.edu.cn/), advised by Professor [Jiwen Lu](http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/). I also spent a great time taking an internship at [ByteDance AILab](https://ailab.bytedance.com/), working on industrial computer vision projects.
+I am Jiahao Li, a senior student majoring in Computer Science from Tsinghua University. I was researching artificial intelligence and computer vision at [i-VisionGroup](http://ivg.au.tsinghua.edu.cn/), advised by Professor [Jiwen Lu](http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/). I also spent a great time taking an internship at [ByteDance AILab](https://ailab.bytedance.com/), working on industrial computer vision projects.
 
-Currently, my interests have shifted to computer architecture. Instead of fancy AI algorithms, I am more interested in the infrastructure that supports those top-level applications. Originally, I was planning to apply for a master program in U.S., but now it seems impossible due to COVID-19. I will join ByteDance AML (Applied Machine Learning) group on 2021 Fall as a backend developer, focusing on machine learning system and infrastructure.
+Currently, my interests have shifted to computer architecture. Instead of fancy AI algorithms, I am more interested in the infrastructure that supports those top-level applications. Originally, I was planning to apply for a master program in US, but now it seems impossible due to COVID-19. I will join ByteDance AML (Applied Machine Learning) group in 2021 Fall as a backend developer, focusing on machine learning system and infrastructure.

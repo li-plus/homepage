@@ -28,7 +28,7 @@ experience:
     location: Beijing, China
     date_start: '2020-08-01'
     date_end: '2020-12-01'
-    description: Researched and developed generative adversarial networks (GAN) for Toutiao, and analyzed millions of training images to improve model performance
+    description: Researched and developed generative adversarial networks (GAN) for Toutiao, analyzed millions of training images, and significantly improved model performance
   - title: B.Eng in Compute Science
     company: Tsinghua University
     company_url: 'https://www.tsinghua.edu.cn/'
