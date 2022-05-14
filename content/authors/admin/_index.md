@@ -35,7 +35,7 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: 'mailto:lijiahao17@mails.tsinghua.edu.cn'
+  link: 'mailto:liplus17@163.com'
 # - icon: twitter
 #   icon_pack: fab
 #   link: https://twitter.com/GeorgeCushen
@@ -63,4 +63,4 @@ email: ""
 highlight_name: true
 ---
 
-My name is Jiahao Li. I am currently a software engineer at ByteDance focusing on high performance model inference framework. Previously I received my bachelor degree from the Department of Computer Science and Technology, Tsinghua University. I am interested in cutting-edge AI algorithms and infrastructure, including CV/NLP/RL models and distributed training/inference system. It is awesome to make AI accessible to everyone.
+My name is Jiahao Li. I am currently a software engineer at ByteDance focusing on high performance model inference framework. Previously I received my bachelor degree from the Department of Computer Science and Technology, Tsinghua University. I am interested in cutting-edge AI algorithms and infrastructure, including CV/NLP/RL models and distributed training/inference system. It is awesome to make AI accessible to everyone!
