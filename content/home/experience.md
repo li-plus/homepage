@@ -22,6 +22,12 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
+  - title: Software Engineer in Machine Learning System
+    company: ByteDance AML
+    location: Beijing, China
+    date_start: '2021-07-01'
+    date_end:
+    description:
   - title: R&D Intern in Computer Vision
     company: ByteDance AILab
     company_url: 'https://ailab.bytedance.com/'
